@@ -1,0 +1,37 @@
+#!/bin/bash
+# Copyright 2014 Joukou Ltd
+# Copyright 2014, OpDemand LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#
+# This script starts Basho Riak 2.x in a Docker container after some basic
+# initial configuration.
+#
+# Riak will listen on the eth0 interface which is the interface through which a
+# container speaks to the bridge.
+#
+# To set the Erlang cookie for Riak clustering override RIAK_COOKIE
+
+# fail hard and fast even on pipelines
+set -eo pipefail
+
+# set debug based on envvar
+[[ $DEBUG ]] && set -x#!/bin/bash
+
+# configure Joukou
+export JOUKOU_ENV=${JOUKOU_ENV:-production}
+
+# configure etcd
+export ETCD_PATH=${ETCD_PATH:-/_joukou.com/${JOUKOU_ENV}/influga}
+export ETCD_TTL=${ETCD_TTL:-10}

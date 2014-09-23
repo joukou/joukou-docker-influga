@@ -1,0 +1,10 @@
+[Unit]
+Description=Influga
+Documentation=https://github.com/hakobera/influga
+
+[Service]
+EnvironmentFile=/etc/systemd/docker.environment
+ExecStart=/usr/local/bin/influga start -c influga-config.json
+
+[Install]
+WantedBy=multi-user.target
